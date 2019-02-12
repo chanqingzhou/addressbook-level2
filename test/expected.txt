@@ -29,6 +29,9 @@
 || Example: help
 || exit: Exits the program.
 || Example: exit
+|| findIgnoreCase: Finds all persons whose names contain any of the specified keywords (not case-sensitive) and displays them as a list with index numbers.
+|| Parameters: KEYWORD [MORE_KEYWORDS]...
+|| Example: findIgnoreCase alice bob charlie
 || ===================================================
 || Enter command: || [Command entered:  delete 1]
 || The person index provided is invalid
@@ -215,6 +218,11 @@
 || Enter command: || [Command entered:  find betsy]
 || 
 || 0 persons listed!
+|| ===================================================
+|| Enter command: || [Command entered:  findIgnoreCase betsy]
+|| 	1. Betsy Choo Tags: [secretive]
+|| 
+|| 1 persons listed!
 || ===================================================
 || Enter command: || [Command entered:  find Betsy]
 || 	1. Betsy Choo Tags: [secretive]

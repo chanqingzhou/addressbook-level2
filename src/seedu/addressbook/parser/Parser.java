@@ -22,6 +22,7 @@ import seedu.addressbook.commands.IncorrectCommand;
 import seedu.addressbook.commands.ListCommand;
 import seedu.addressbook.commands.ViewAllCommand;
 import seedu.addressbook.commands.ViewCommand;
+import seedu.addressbook.commands.FindIgnoreCaseCommand;
 import seedu.addressbook.data.exception.IllegalValueException;
 
 /**
@@ -84,6 +85,9 @@ public class Parser {
 
         case FindCommand.COMMAND_WORD:
             return prepareFind(arguments);
+
+        case FindIgnoreCaseCommand.COMMAND_WORD:
+            return prepareFindIgnoreCase(arguments);
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
@@ -247,6 +251,21 @@ public class Parser {
         final Set<String> keywordSet = new HashSet<>(Arrays.asList(keywords));
         return new FindCommand(keywordSet);
     }
+
+    private Command prepareFindIgnoreCase(String args) {
+        final Matcher matcher = KEYWORDS_ARGS_FORMAT.matcher(args.trim());
+        if (!matcher.matches()) {
+            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    FindCommand.MESSAGE_USAGE));
+        }
+
+        // keywords delimited by whitespace
+        final String[] keywords = matcher.group("keywords").split("\\s+");
+        final Set<String> keywordSet = new HashSet<>(Arrays.asList(keywords));
+        return new FindIgnoreCaseCommand(keywordSet);
+    }
+
+
 
 
 }
